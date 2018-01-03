@@ -98,7 +98,7 @@ inline ea_t getEa(ea_t ea)
 inline BOOL isEa(flags_t f)
 {
     #ifndef __EA64__
-    return(isDwrd(f));
+    return(is_dword(f));
     #else
     return(isQwrd(f));
     #endif
