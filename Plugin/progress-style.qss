@@ -1,0 +1,40 @@
+
+QWidget
+{
+	color: #C0C0C0;
+   background-color: #303030;
+
+	font-family: Noto Sans, Tahoma;
+	font-size: 13px;
+	font-style: normal;
+}
+
+QPushButton
+{
+	font-weight: bold;
+	padding: 7px;
+	min-width: 37px;
+	border-style: none;
+}
+QPushButton:hover
+{
+	background-color: #4A4A4A;
+}
+QPushButton:pressed
+{
+	background-color: #595959;
+}
+QPushButton:focus
+{
+	background-color: #4A4A4A;
+}
+
+QProgressBar
+{
+	background-color: #4E4E4E;
+	border-style: none;	
+}
+QProgressBar::chunk
+{
+    background-color: #AB47BC;
+}

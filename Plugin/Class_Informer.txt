@@ -1,0 +1,228 @@
+
+Class Informer:
+===========================================================
+IDA Pro class vftable finder, namer, fixer, lister plug-in.
+Version 2.4, May 2017
+By Sirmabus
+
+https://sourceforge.net/projects/classinformer/
+http://www.macromonkey.com/bb/index.php/topic,13.0.html
+
+---------------------------------------------------------
+Scans MSVC target IDBs for vftables with C++ RTTI data.
+Places structures, names, labels, and comments to class vftables
+(Virtual Function Table) to aid reverse engineering.
+Also further assists by defining and associating known data structures.
+Creates a list window for browsing by object name.
+
+RTTI ("Run-Time Type Identification"):
+http://en.wikipedia.org/wiki/RTTI
+
+It's currently targeted for Microsoft Visual C++ complied binaries only.
+Unpredictable results if used on other targets.
+
+Based off article by Igor Skochinsky:
+http://www.openrce.org/articles/full_view/23
+Updated
+http://www.hexblog.com/wp-content/uploads/2012/06/
+Recon-2012-Skochinsky-Compiler-Internals.pdf
+
+
+-- [Install] --------------------------------------------
+Copy the plug-in to your IDA Pro "plugins" directory.
+Then edit your "..\plugins\plugins.cfg" to setup with a hotkey.
+
+IE: Add these two lines:
+; Sirmabus "Class Informer" plug-in
+Class-Informer IDA_ClassInformer_PlugIn.plw Alt-2 0
+
+See IDA documentation for more on installing and using plug-ins.
+
+
+-- [How to run it] --------------------------------------
+Invoke as usual in IDA with an assigned hot key, or through IDA's
+"Edit->Plugins" menu.
+
+Dialog Options:
+"Place structures": Uncheck this if you don't want RTTI data structures to be
+defined and placed; instead individual data elements will be cleaned up and
+placed with additional comments.
+
+"Process static initializers & terminators": If unchecked the processing of
+static ctor and dtor tables will be skipped.
+
+"Overwrite anterior comments": Check if you want existing anterior (above)
+comments be erased and overwritten. Class Informer will place separation and
+information comments above vftables, etc.  Default unchecked.
+
+"Audio on completion": Uncheck this if you don't want any audio completion
+sound.
+
+On completion a list window will come up showing any found vftables and
+relevant class information.
+Lines with multiple inheritance that are not the main class will be colored
+gray.
+Click on a line to jump to it's vftable.
+
+
+Example list output:
+0046769C 077 CEdit:CWnd, CCmdTarget, CObject;  (SI)
+
+This is: vftable address, method count, and class hierarchy ended with some
+additional class info.
+To make things easier to read, all known type names are considered to be a
+"class" unless explicitly proceeded with "struct" to indicate "structure" type.
+
+The addition info at the end:
+"(SI)" single inheritance hierarchy, "(MI)" multiple inheritance,
+"(VI)" virtual inheritance, or "(MI VI)" multiple virtual inheritance.
+
+
+-- [Design] ---------------------------------------------
+
+I read Igor Skochinsky's excellent article:
+"Reversing Microsoft Visual C++". And ran some his IDC accompanying scripts.
+I was amazed at how well it worked on identifying vftables with a gold mine of
+type information and how it helped clean up an IDB by defining data structures.
+
+But the scripts had several problems and I wanted to put it into a plug-in
+anyhow for speed, flexibility, and to build as a general test bed for class
+information and research.
+
+I originally I had in mind some sort of automatic object member naming.
+But after doing real world tests I found it wasn't so useful.
+
+For my RE work I really just need to see these classes by name, and then where
+to find them for closer examination. Then adding automatic fixing and labeling
+of ctor and dtor tables is a bonus.
+
+As of version 2.0 switched to a different RTTI finding/scanning scheme.
+No longer scanning and locating vftables first. Now "Complete Object Locator"
+are located directly. This leads to more accuracy; less vftables are missed.
+
+
+-- [Thanks and Appreciation] ----------------------------
+
+To Igor Skochinsky for the RTTI information and inspiration.
+To "sh!ft" for the source code to his version, and ideas that lead to the new
+improved scanning scheme.
+To "jlnsrk" for the reversed 64 bit RTTI version information.
+To Chris Eagle for mentioning Class Informer in his book:
+"The IDA Pro Book: The Unofficial Guide to the World's Most Popular
+Disassembler"
+
+
+-- [History] --------------------------------------------
+
+2.4 - 1) Now scans all "DATA" type segments. Before would only scan the first
+         ".data" and ".rdata" segments.
+      2) Added segment select option to plug-in dialog.
+
+2.2 - 1) Updated to IDA SDK 6.9 and MSVC 2015.
+
+2.1 - 1) Removed the "IDA updating, please wait.." wait for IDA to update thing
+         at the end of processing to fix an ocassional hang.
+	  2) Updated to IDA SDK 6.8 version.
+
+2.0 - A complete overhaul of the entire plug-in.
+	1) Updated namings to better match that of Microsoft's internals.
+	2) Moved custom type creation out of the init() call; now gets created
+	only 	on the first run and only if the "Place structures" option is
+	checked.
+	3) Descriptive comments are now placed on C/C++ initializer and
+	terminator table start and end points.
+	4) The UI is now a custom Qt one with "material design" elements.
+	5) Added a 64bit (32bit IDA's "__E64__") version.
+	6) The RTCI (rare MS MFC type) support was removed.
+	7) Now locates vftables by RTTI "Complete Object Locator" structures
+	directly.
+	8) Updated to IDA SDK 6.7 version.
+	9) No longer has a default hotkey. Set your own using "plugins.cfg".
+	10) Updated and improved the static ctor/dtor processing.
+
+1.06 - 1) Added persistent vftable list storage.
+       2) Removed the many unnecessary "autoWait()" calls that caused a bit
+       of a slow down.
+       3) Fixed broken and updated some custom UI elements.
+       4) Fixed the multi-segment select feature for the non-QT version and
+          added a working setup for the QT version too. For QT, after desired
+          segments are selected right click on the list and do "Select"
+          followed by the "Okay" button.
+       5) Added the ".data" segment to the default data search since vftables
+          are often located there (in addition to ".rdata").
+
+1.05 - 1) The problem with the plug-in not being ready on invocation was fixed
+          by returning PLUGIN_KEEP on init to stay resident.
+       2) The fix in 1.04 didn't quite do it for structure placement problems.
+          In particular there remains a run on problem in IDA when marking some
+          areas "unknown"; these "do_unknown()" calls have been removed and
+          each structure element is individually placed one by one before
+          attempting to place the actual assorted structures.
+
+1.04 - 1) Now ensures RTTI type name strings are set.
+
+1.03 - 1) Added check and warning message for invalid start and end addresses
+          with "_initterm" type static/global ctor & dtor tables.
+          Would cause a negative count run-on condition that could trample over
+          a large data area.
+       2) UI customizations auto-disabled when using IDA Qt version.
+       3) Current IDA view is refreshed on completion to show changes.
+       4) Fixed a stall that could result from repeated failed attempts at an
+          RTTI type placement. Plus fixed the pattern for these so they could
+          be properly placed.
+
+1.02 - 1) Added user code and data segment selector.
+          Allows user to select multiple data and code segments instead of the
+          default of ".text" and ".rdata" by name.
+          For those rare executable targets that have multiple code sections,
+          and, or, unpacked executables with mixed segments, etc.
+       2) Added config option for verbose output to the debugger channel.
+       3) Improved overall processing speed.
+       4) Since there can multiple instances of the same class or structure,
+          and IDA names must be unique all duplicate names are now serialized.
+          More things labeled, and no more "duplicate name" warning spam.
+          Note: Effects only label names, commented names are not altered
+       5) Updated to IDA SDK 5.5
+       6) Added links to Sirmabus IDA plug-ins support forum.
+
+1.01 - 1) No longer pops up an error and exits IDA when an incompatible IDB is
+          loaded. Just displays a "not loaded" log message now.
+       2) Fixed IDA tab page update issue.
+       3) Now built with IDA SDK 5.4, and tested with IDA 5.4.
+       4) Fixed incorrect string placement in the RTTI type info struct.
+          Now the structures are right which make a cleaner DB.
+          This was a major bottleneck that caused the structure placement to be
+          about 36x slower, now only about 1x.
+       5) Fixed some misspellings.
+
+-- [TODO] -----------------------------------------------
+1) Add support for more compilers and platforms.
+2) Add distinction for "pre-terminators" and C/C++ _initterm type tables.
+3) Fix cases where _initterm() are register calls.
+
+Find a problem? Please make a ticket here:
+https://sourceforge.net/p/classinformer/tickets/
+
+
+-- [License] -----------------------------------------------
+http://www.opensource.org/licenses/mit-license.php
+The MIT License (MIT)
+Copyright(c) 2009 to present Sirmabus.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

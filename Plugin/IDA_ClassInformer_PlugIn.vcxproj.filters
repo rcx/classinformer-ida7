@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{a9876874-6172-4c9f-9d7e-e37acb380d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{457050d4-f1f3-4a27-972f-11271f76b0de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{dd7ba64d-d074-493d-9850-868de31096d7}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{e0c522c9-a6a4-40e2-a4d6-fc62cb3e5aed}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug64">
+      <UniqueIdentifier>{7df04027-bd87-43d2-b942-a438fb7cabc3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release64">
+      <UniqueIdentifier>{08b1d19d-ae87-4e19-a17b-645dacc30448}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RTTI.cpp" />
+    <ClCompile Include="Vftable.cpp" />
+    <ClCompile Include="MainDialog.cpp" />
+    <ClCompile Include="..\..\IDA_Support\SupportLib\Utility.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug64\moc_MainDialog.cpp">
+      <Filter>Generated Files\Debug64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release64\moc_MainDialog.cpp">
+      <Filter>Generated Files\Release64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ClassInformerRes.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Core.h" />
+    <CustomBuild Include="RTTI.h" />
+    <CustomBuild Include="StdAfx.h" />
+    <CustomBuild Include="Vftable.h" />
+    <CustomBuild Include="undname.h">
+      <Filter>Misc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Class_Informer.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="List Window Child Widgets.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Notes.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ScratchPad.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Temp.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Update TODO.txt">
+      <Filter>Doc</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainDialog.h" />
+    <CustomBuild Include="ClassInformerRes.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_dialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\IDA_Support\SupportLib\Utility.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="completed.ogg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="progress-style.qss">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="style.qss">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="view-style.qss">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="banner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="checkbox-checked.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

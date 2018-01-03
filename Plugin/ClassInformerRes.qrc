@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource prefix="/classinf">
+		<file>banner.png</file>
+		<file>icon.png</file>
+		<file>completed.ogg</file>
+		<file>checkbox-checked.png</file>
+		<file>progress-style.qss</file>
+		<file>style.qss</file>
+		<file>view-style.qss</file>
+	</qresource>
+</RCC>

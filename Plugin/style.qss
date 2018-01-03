@@ -1,0 +1,139 @@
+
+/* Class Informer Stylesheet by Sirmabus */
+/* Rev 1.0 Feb 22, 2015 */
+/* Dark theme, with some Google Material Design elements in mind */
+
+/* Parent */
+QWidget
+{
+	color: #E0E0E0;
+    background-color: #303030;
+
+	font-family: Noto Sans, Tahoma;
+	font-size: 13px;
+	font-style: normal;
+}
+
+/* Push buttons */
+/* MD flat style */
+QPushButton
+{
+	color: #FFF176;
+	font-weight: bold;
+	padding: 7px;
+	min-width: 37px;
+	border-style: none;
+}
+QPushButton:hover
+{
+	background-color: #4A4A4A;
+}
+QPushButton:pressed
+{
+	background-color: #595959;
+}
+QPushButton:focus
+{
+	background-color: #4A4A4A;
+}
+
+/* Option push button */
+QPushButton#pushButton1
+{ 
+	color: #CE93D8;
+	background-color: #3F3F3D;
+}
+QPushButton#pushButton1:hover
+{
+	background-color: #505050;
+}
+QPushButton#pushButton1:pressed
+{
+	background-color: #5F5F5D;
+}
+
+QDialogButtonBox
+{
+	/* MD typeically has the cancel/reject button first */
+	button-layout: 1;
+}
+
+/* Version label */
+QLabel#versionLabel
+{
+	color: #AB47BC;
+	font-size: 10px;
+	background-color: transparent;
+}
+
+/* Hyperlink */
+/* The actual link color is set inside the link text, see UI file */
+QLabel#linkLabel
+{
+	height: 50px;
+}
+/* Despite what the Qt docs says ':hover' works, albeit limited control */
+QLabel#linkLabel:hover
+{
+	background-color: #4A4A4A;
+}
+
+QCheckBox::indicator
+{
+	background-color: #303030;
+	border: 2px solid #E4E4E4;
+	border-radius: 1px;
+   width: 10px;
+   height: 10px;
+}
+QCheckBox::indicator:checked
+{
+	border: 2px solid #CE93D8;
+	border-radius: 1px;
+	width: 10px;
+	height: 10px;
+	image: url(:/classinf/checkbox-checked.png);
+
+}
+QCheckBox::hover
+{
+	background-color: #4A4A4A;
+}
+QCheckBox::indicator:unchecked:hover
+{
+	background-color: #4A4A4A;
+}
+
+/* ---- For char set select dialog ---- */
+
+QHeaderView
+{
+	border-top: 0px;
+	border-bottom: 3px solid #C8C8C8;
+}
+QHeaderView::section
+{
+	height: 23px;
+
+	font-family: Noto Sans,Consolas;
+	font-weight: bold;
+
+	color: #FFFFFF;
+	background-color: #9575CD;	
+	border: 0px;
+}
+
+QTableView
+{
+	font-family: Noto Sans,Consolas;
+	color: #404040;
+	background-color: #FDFDFD;
+	selection-color: #404040;
+	selection-background-color: #FDFDFD;
+}
+
+/* QTableView seperator line */
+QTableWidget::item
+{
+	border-bottom: 1px solid #EEEEEE;
+}

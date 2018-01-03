@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainCIDialog</class>
+ <widget class="QDialog" name="MainCIDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>292</width>
+    <height>344</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>292</width>
+    <height>344</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>292</width>
+    <height>344</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">Class Informer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ClassInformerRes.qrc">
+    <normaloff>:/classinf/icon.png</normaloff>:/classinf/icon.png</iconset>
+  </property>
+  <property name="toolTip">
+   <string notr="true"/>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>312</y>
+     <width>156</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::NoButton</set>
+   </property>
+   <property name="centerButtons">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox1">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>95</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Place structures</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox2">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>125</y>
+     <width>256</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Process static initializers &amp;&amp; terminators</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox3">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>155</y>
+     <width>201</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Overwrite anterior comments</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox4">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>185</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Audio on completion</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="linkLabel">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>256</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string>&lt;a href=&quot;http://www.macromonkey.com/bb/index.php/topic,13.0.html&quot; style=&quot;color:#AA00FF;&quot;&gt;Class Informer Fourm&lt;/a&gt;</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="image">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>292</width>
+     <height>74</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::PlainText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="ClassInformerRes.qrc">:/classinf/banner.png</pixmap>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="versionLabel">
+   <property name="geometry">
+    <rect>
+     <x>225</x>
+     <y>45</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Version: 2.4
+By Sirmabus</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::PlainText</enum>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton1">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>215</y>
+     <width>129</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optionally select wich segments to scan for strings.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string notr="true">SELECT SEGMENTS</string>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="ClassInformerRes.qrc"/>
+  <include location="ClassInformerRes.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>MainCIDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>MainCIDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton1</sender>
+   <signal>pressed()</signal>
+   <receiver>MainCIDialog</receiver>
+   <slot>segmentSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>79</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>145</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>segmentSelect()</slot>
+ </slots>
+</ui>
