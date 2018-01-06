@@ -329,6 +329,57 @@ static ssize_t idaapi uiCallback(PVOID obj, int eventID, va_list va)
 
 //static HWND WINAPI getIdaHwnd(){ return((HWND)callui(ui_get_hwnd).vptr); }
 
+struct result_window_t : public chooser_multi_t // chooser_multi_t has different api, so i won't be using it.
+{
+	result_window_t() : chooser_multi_t(CH_ATTRS, LBCOLUMNCOUNT, listBColumnWidth, columnHeader, LBTITLE)
+	{
+		icon = ((chooserIcon != 0) ? chooserIcon : 160);
+
+		// vft hex address format
+#ifdef __EA64__
+		UINT count = getTableCount();
+		int maxDigits = 0;
+		char buffer[32];
+		for (UINT i = 0; i < count; i++)
+		{
+			TBLENTRY e; e.vft = 0;
+			getTableEntry(e, i);
+			int digits = strlen(_ui64toa(e.vft, buffer, 16));
+			if (digits > maxDigits) maxDigits = digits;
+		}
+		if (++maxDigits > 16) maxDigits = 16;
+		sprintf(addressFormat, "%%0%uI64X", maxDigits);
+#endif
+	};
+
+	virtual void idaapi closed()
+	{
+		lw_onClose();
+	}
+
+	virtual cbres_t idaapi enter(sizevec_t* sel)
+	{
+		lw_onSelect(sel->front());
+		return NOTHING_CHANGED;
+	}
+
+	virtual void idaapi get_row(
+		qstrvec_t *cols,
+		int *icon_,
+		chooser_item_attrs_t *attrs,
+		size_t n) const
+	{
+		lw_onMakeLine(n, cols);
+		*icon_ = lw_onGetIcon(n);
+	}
+
+	virtual size_t idaapi get_count() const
+	{
+		return lw_onGetLineCount();
+	}
+
+} results_window;
+
 void CORE_Process(int arg)
 {
     try
@@ -493,57 +544,6 @@ void CORE_Process(int arg)
     }
     CATCH()
 }
-
-struct result_window_t : public chooser_multi_t // chooser_multi_t has different api, so i won't be using it.
-{
-	result_window_t() : chooser_multi_t(CH_ATTRS, LBCOLUMNCOUNT, listBColumnWidth, columnHeader, LBTITLE)
-	{
-		icon = ((chooserIcon != 0) ? chooserIcon : 160);
-
-		// vft hex address format
-#ifdef __EA64__
-		UINT count = getTableCount();
-		int maxDigits = 0;
-		char buffer[32];
-		for (UINT i = 0; i < count; i++)
-		{
-			TBLENTRY e; e.vft = 0;
-			getTableEntry(e, i);
-			int digits = strlen(_ui64toa(e.vft, buffer, 16));
-			if (digits > maxDigits) maxDigits = digits;
-		}
-		if (++maxDigits > 16) maxDigits = 16;
-		sprintf(addressFormat, "%%0%uI64X", maxDigits);
-#endif
-	};
-
-	virtual void idaapi closed()
-	{
-		lw_onClose();
-	}
-
-	virtual cbres_t idaapi enter(sizevec_t* sel)
-	{
-		lw_onSelect(sel->front());
-		return NOTHING_CHANGED;
-	}
-
-	virtual void idaapi get_row(
-		qstrvec_t *cols,
-		int *icon_,
-		chooser_item_attrs_t *attrs,
-		size_t n) const
-	{
-		lw_onMakeLine(n, cols);
-		*icon_ = lw_onGetIcon(n);
-	}
-
-	virtual size_t idaapi get_count() const
-	{
-		return lw_onGetLineCount();
-	}
-
-} results_window;
 
 // Print out end stats
 static void showEndStats()

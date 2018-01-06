@@ -49,9 +49,6 @@
     <ClCompile Include="RTTI.cpp" />
     <ClCompile Include="Vftable.cpp" />
     <ClCompile Include="MainDialog.cpp" />
-    <ClCompile Include="..\..\IDA_Support\SupportLib\Utility.cpp">
-      <Filter>Misc</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug64\moc_MainDialog.cpp">
       <Filter>Generated Files\Debug64</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_dialog.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\IDA_Support\SupportLib\Utility.h">
-      <Filter>Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

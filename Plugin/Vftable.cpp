@@ -25,8 +25,8 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
 	// Start of a vft should have an xref and a name (auto, or user, etc).
     // Ideal flags 32bit: FF_DWRD, FF_0OFF, FF_REF, FF_NAME, FF_DATA, FF_IVL
     //dumpFlags(ea);
-    flags_t flags = get_flags_novalue(ea);
-	if(hasRef(flags) && has_any_name(flags) && (isEa(flags) || isUnknown(flags)))
+    flags_t flags = get_flags(ea);
+	if(has_xref(flags) && has_any_name(flags) && (isEa(flags) || is_unknown(flags)))
     {
         // Get raw (auto-generated mangled, or user named) vft name
         //if (!get_name(BADADDR, ea, info.name, SIZESTR(info.name)))
@@ -39,8 +39,8 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
             // Should be an ea_t offset to a function here (could be unknown if dirty IDB)
             // Ideal flags for 32bit: FF_DWRD, FF_0OFF, FF_REF, FF_NAME, FF_DATA, FF_IVL
             //dumpFlags(ea);
-            flags_t indexFlags = get_flags_novalue(ea);
-            if (!(isEa(indexFlags) || isUnknown(indexFlags)))
+            flags_t indexFlags = get_flags(ea);
+            if (!(isEa(indexFlags) || is_unknown(indexFlags)))
             {
                 //msg(" ******* 1\n");
                 break;
@@ -59,8 +59,8 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
             }
 
             // Should see code for a good vft method here, but it could be dirty
-            flags_t flags = get_flags_novalue(memberPtr);
-            if (!(isCode(flags) || isUnknown(flags)))
+            flags_t flags = get_flags(memberPtr);
+            if (!(is_code(flags) || is_unknown(flags)))
             {
                 //msg(" ******* 3\n");
                 break;
@@ -69,7 +69,7 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
             if (ea != start)
             {
                 // If we see a ref after first index it's probably the beginning of the next vft or something else
-                if (hasRef(indexFlags))
+                if (has_xref(indexFlags))
                 {
                     //msg(" ******* 4\n");
                     break;

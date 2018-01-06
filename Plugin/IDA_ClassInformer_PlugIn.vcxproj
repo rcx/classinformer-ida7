@@ -275,7 +275,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitEx;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;__NT__;__IDP__;__VC__;QT_NO_DEBUG;QT_NAMESPACE=QT;QT_NO_UNICODE_LITERAL;_CRT_SECURE_NO_WARNINGS;MATERIAL_DESIGN_STYLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -401,7 +401,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitEx;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__EA64__;WIN32;NDEBUG;_WINDOWS;_USRDLL;__NT__;__IDP__;__VC__;QT_NO_DEBUG;QT_NAMESPACE=QT;QT_NO_UNICODE_LITERAL;_CRT_SECURE_NO_WARNINGS;MATERIAL_DESIGN_STYLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -511,7 +511,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitEx;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEVMODE;_DEBUG;WIN32;_WINDOWS;_USRDLL;__NT__;__IDP__;__VC__;QT_NAMESPACE=QT;QT_NO_UNICODE_LITERAL;_CRT_SECURE_NO_WARNINGS;MATERIAL_DESIGN_STYLE;__X64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -621,7 +621,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitEx;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);$(IDADIR)\idasdk70\include;$(QTDIR)\include;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEVMODE;__EA64__;_DEBUG;WIN32;_WINDOWS;_USRDLL;__NT__;__IDP__;__VC__;QT_NO_DEBUG;QT_NAMESPACE=QT;QT_NO_UNICODE_LITERAL;_CRT_SECURE_NO_WARNINGS;MATERIAL_DESIGN_STYLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -957,7 +957,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\IDA_Support\SupportLib\Utility.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="GeneratedFiles\Debug64\moc_MainDialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1401,7 +1400,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\IDA_Support\SupportLib\Utility.h" />
     <ClInclude Include="GeneratedFiles\ui_dialog.h" />
     <CustomBuild Include="MainDialog.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainDialog.h...</Message>

@@ -287,7 +287,7 @@ static void create_structRTTI(ea_t ea, tid_t tid, __in_opt LPSTR typeName = NULL
         {
             putEa(ea + offsetof(RTTI::type_info, vfptr));
             putEa(ea + offsetof(RTTI::type_info, _M_data));
-            create_strlit((ea + offsetof(RTTI::type_info, _M_d_name)), nameLen);
+            create_strlit((ea + offsetof(RTTI::type_info, _M_d_name)), nameLen, STRTYPE_C);
         }
 
         // sh!ft: End should be aligned
@@ -403,11 +403,12 @@ static int readIdaString(ea_t ea, __out LPSTR buffer, int bufferSize)
     else
     {
         // Read string at ea if it exists
-        int len = get_max_ascii_length(ea, ASCSTR_C, ALOPT_IGNHEADS);
+        int len = get_max_strlit_length(ea, STRTYPE_C, ALOPT_IGNHEADS);
         if (len > 0)
         {
             if (len > bufferSize) len = bufferSize;
-            if (get_ascii_contents2(ea, len, ASCSTR_C, buffer, bufferSize))
+			size_t bufferSizeCpy = bufferSize;
+            if (get_strlit_contents(buffer, ea, len, STRTYPE_C, &bufferSizeCpy))
             {
                 // Cache it
                 buffer[len - 1] = 0;
@@ -905,7 +906,7 @@ void RTTI::_RTTIClassHierarchyDescriptor::doStruct(ea_t chd, ea_t colBase64)
                     fixEa(baseClassArray);
 
                     // Add index comment to to it
-                    if (!has_cmt(get_flags_novalue(baseClassArray)))
+                    if (!has_cmt(get_flags(baseClassArray)))
                     {
                         if (numBaseClasses == 1)
                             set_cmt(baseClassArray, "  BaseClass", FALSE);
@@ -926,7 +927,7 @@ void RTTI::_RTTIClassHierarchyDescriptor::doStruct(ea_t chd, ea_t colBase64)
                     ea_t bcd = (colBase64 + (UINT64)bcOffset);
 
                     // Add index comment to to it
-                    if (!has_cmt(get_flags_novalue(baseClassArray)))
+                    if (!has_cmt(get_flags(baseClassArray)))
                     {
                         if (numBaseClasses == 1)
                         {
@@ -962,11 +963,11 @@ void RTTI::_RTTIClassHierarchyDescriptor::doStruct(ea_t chd, ea_t colBase64)
                         if (optionOverwriteComments)
                         {
                             killAnteriorComments(baseClassArray);
-                            add_long_cmt(baseClassArray, true, "");
+							add_extra_cmt(baseClassArray, true, "");
                         }
                         else
                         if (!hasAnteriorComment(baseClassArray))
-                            add_long_cmt(baseClassArray, true, "");
+							add_extra_cmt(baseClassArray, true, "");
 
                         // Set CHD name
                         if (!hasUniqueName(chd))
@@ -1330,11 +1331,11 @@ void RTTI::processVftable(ea_t vft, ea_t col)
             if (optionOverwriteComments)
             {
                 killAnteriorComments(cmtPtr);
-                describe(cmtPtr, true, "\n; %s %s", ((colName[3] == 'V') ? "class" : "struct"), cmt.c_str());
+				add_extra_line(cmtPtr, true, "\n; %s %s", ((colName[3] == 'V') ? "class" : "struct"), cmt.c_str());
             }
             else
             if (!hasAnteriorComment(cmtPtr))
-                describe(cmtPtr, true, "\n; %s %s", ((colName[3] == 'V') ? "class" : "struct"), cmt.c_str()); // add_long_cmt
+				add_extra_line(cmtPtr, true, "\n; %s %s", ((colName[3] == 'V') ? "class" : "struct"), cmt.c_str()); // add_long_cmt
 
             //vftable::processMembers(plainName, vft, end);
         }

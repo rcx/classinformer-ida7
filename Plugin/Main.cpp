@@ -9,7 +9,7 @@
 // === Function Prototypes ===
 int idaapi IDAP_init();
 void idaapi IDAP_term();
-void idaapi IDAP_run(int arg);
+bool idaapi IDAP_run(size_t arg);
 extern void CORE_Init();
 extern void CORE_Process(int iArg);
 extern void CORE_Exit();
@@ -35,7 +35,7 @@ extern "C" ALIGN(16) plugin_t PLUGIN =
 
 int idaapi IDAP_init()
 {
-	if(strcmp(inf.procName, "metapc") == 0) // (ph.id == PLFM_386)
+	if(strcmp(inf.procname, "metapc") == 0) // (ph.id == PLFM_386)
 	{
 		CORE_Init();
 		return(PLUGIN_KEEP);
@@ -48,7 +48,8 @@ void idaapi IDAP_term()
     CORE_Exit();
 }
 
-void idaapi IDAP_run(int arg)
+bool idaapi IDAP_run(size_t arg)
 {
 	CORE_Process(arg);
+	return true; // ???? there's no documentation on what the return value should be
 }
