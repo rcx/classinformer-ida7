@@ -73,7 +73,7 @@ typedef qlist<earef> eaRefList;
 template <class T> BOOL getVerify32_t(ea_t eaPtr, T &rValue)
 {
 	// Location valid?
-    if (isLoaded(eaPtr))
+    if (is_loaded(eaPtr))
 	{
 		// Get 32bit value
 		rValue = (T) get_32bit(eaPtr);

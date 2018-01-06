@@ -408,8 +408,13 @@ static int readIdaString(ea_t ea, __out LPSTR buffer, int bufferSize)
         {
             if (len > bufferSize) len = bufferSize;
 			size_t bufferSizeCpy = bufferSize;
-            if (get_strlit_contents(buffer, ea, len, STRTYPE_C, &bufferSizeCpy))
+			qstring qsBuf = qstring(); // hmmm, convert the entire plugin to qstring or just make an awful hack??? :thinking:
+            if (get_strlit_contents(&qsBuf, ea, len, STRTYPE_C, &bufferSizeCpy))
             {
+				for (int i = 0; i < len; i++) // THIS IS PROBABLY A BAD IDEA
+				{
+					buffer[i] = qsBuf.at(i);
+				}
                 // Cache it
                 buffer[len - 1] = 0;
                 stringCache[ea] = buffer;
