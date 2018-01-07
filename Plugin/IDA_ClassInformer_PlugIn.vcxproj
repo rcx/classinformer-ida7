@@ -166,7 +166,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetExt>.dll</TargetExt>
-    <TargetName>IDA_ClassInformer_PlugIn</TargetName>
+    <TargetName>IDA_ClassInformer_PlugIn64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Plugin\$(Configuration)\</OutDir>
@@ -198,7 +198,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetExt>.dll</TargetExt>
-    <TargetName>IDA_ClassInformer_PlugIn</TargetName>
+    <TargetName>IDA_ClassInformer_PlugIn64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
