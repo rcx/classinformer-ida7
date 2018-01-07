@@ -539,7 +539,7 @@ void CORE_Process(int arg)
         if (!aborted && (getTableCount() > 0))
         {
 			results_window = result_window_t();
-			choose(&results_window, NULL);
+			results_window.choose();
 
             customizeChooseWindow();
         }
