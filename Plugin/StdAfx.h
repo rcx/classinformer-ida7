@@ -100,7 +100,7 @@ inline BOOL isEa(flags_t f)
     #ifndef __EA64__
     return(is_dword(f));
     #else
-    return(isQwrd(f));
+    return(is_qword(f));
     #endif
 }
 

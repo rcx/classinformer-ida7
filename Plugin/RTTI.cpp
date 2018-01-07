@@ -182,7 +182,7 @@ void RTTI::addDefinitionsToIda()
     #define EAOFFSET (off_flag() | dword_flag())
     #else
     mtoff.ri.flags = REF_OFF64;
-    #define EAOFFSET (off_flag() | qwrd_flag())
+    #define EAOFFSET (off_flag() | qword_flag())
     #endif
 	mtoff.ri.target = BADADDR;
 
@@ -269,7 +269,7 @@ static void create_structRTTI(ea_t ea, tid_t tid, __in_opt LPSTR typeName = NULL
     #ifndef __EA64__
     #define putEa(ea) create_dword(ea, sizeof(ea_t))
     #else
-    #define putEa(ea) doQwrd(ea, sizeof(ea_t))
+    #define putEa(ea) create_qword(ea, sizeof(ea_t))
     #endif
 
 	if(tid == s_type_info_ID)
@@ -617,10 +617,10 @@ void RTTI::_RTTICompleteObjectLocator::doStruct(ea_t col)
     ea_t colBase = (col - (UINT64)objectLocator);
 
     ea_t typeInfo = (colBase + (UINT64)tdOffset);
-    type_info::create_struct(typeInfo);
+    type_info::doStruct(typeInfo);
 
     ea_t classDescriptor = (colBase + (UINT64)cdOffset);
-    _RTTIClassHierarchyDescriptor::create_struct(classDescriptor, colBase);
+    _RTTIClassHierarchyDescriptor::doStruct(classDescriptor, colBase);
 
     // Set absolute address comments
     char buffer[64];
@@ -948,7 +948,7 @@ void RTTI::_RTTIClassHierarchyDescriptor::doStruct(ea_t chd, ea_t colBase64)
 
                     // Place BCD struct, and grab the base class name
                     char baseClassName[MAXSTR];
-                    _RTTIBaseClassDescriptor::create_struct(bcd, baseClassName, colBase64);
+                    _RTTIBaseClassDescriptor::doStruct(bcd, baseClassName, colBase64);
                     #endif
 
                     // Now we have the base class name, name and label some things

@@ -298,7 +298,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/EXPORT:PLUGIN %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLib.lib;SupportLib.LiB;WaitBoxEx64.lib;IdaOggPlayer.LiB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(IDADIR)\idasdk70\lib\x64_win_vc_32;$(IDADIR)\idasdk70\lib\x64_win_qt;$(QTDIR)\lib;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib</AdditionalLibraryDirectories>
@@ -424,7 +424,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/EXPORT:PLUGIN %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ida.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLib.LiB;WaitBoxEx64.lib;IdaOggPlayer.LiB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(IDADIR)\idasdk70\lib\x64_win_vc_64;$(IDADIR)\idasdk70\lib\x64_win_qt;$(QTDIR)\lib;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib</AdditionalLibraryDirectories>
@@ -532,7 +532,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/EXPORT:PLUGIN %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLibD.LiB;WaitBoxExD64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLibD.LiB;WaitBoxExD64.lib;IdaOggPlayerD.LiB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(IDADIR)\idasdk70\lib\x64_win_vc_32;$(IDADIR)\idasdk70\lib\x64_win_qt;$(QTDIR)\lib;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -642,7 +642,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/EXPORT:PLUGIN %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>ida.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ida.lib;Winmm.lib;SupportLibD.LiB;WaitBoxExD64.lib;IdaOggPlayerD.LiB;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(IDADIR)\idasdk70\lib\x64_win_vc_64;$(IDADIR)\idasdk70\lib\x64_win_qt;$(QTDIR)\lib;$(IDASUPPORT)\IDA_WaitBoxEx-7.0;$(IDASUPPORT)\IDA_SegmentSelect;$(IDASUPPORT)\IDA_OggPlayer;$(IDASUPPORT)\SupportLib</AdditionalLibraryDirectories>

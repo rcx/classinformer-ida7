@@ -337,6 +337,8 @@ struct result_window_t : public chooser_multi_t // chooser_multi_t has different
 
 		// vft hex address format
 #ifdef __EA64__
+		static char addressFormat[16];
+
 		UINT count = getTableCount();
 		int maxDigits = 0;
 		char buffer[32];
@@ -1087,14 +1089,14 @@ void fixEa(ea_t ea)
     #ifndef __EA64__
     if (!is_dword(get_flags(ea)))
     #else
-    if (!isQwrd(get_flags(ea)))
+    if (!is_qword(get_flags(ea)))
     #endif
     {
         setUnknown(ea, sizeof(ea_t));
         #ifndef __EA64__
         create_dword(ea, sizeof(ea_t));
         #else
-        doQwrd(ea, sizeof(ea_t));
+		create_qword(ea, sizeof(ea_t));
         #endif
     }
 }
