@@ -155,7 +155,7 @@ static void CALLBACK lw_onMakeLine(UINT n, qstrvec_t* cols)
     #endif
 
     // Populate requested row
-	char buf[100];
+	char buf[MAXSTR];
 
     TBLENTRY e;
     getTableEntry(e, n);
