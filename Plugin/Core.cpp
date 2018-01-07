@@ -334,24 +334,6 @@ struct result_window_t : public chooser_multi_t // chooser_multi_t has different
 	result_window_t() : chooser_multi_t(CH_ATTRS, LBCOLUMNCOUNT, listBColumnWidth, columnHeader, LBTITLE)
 	{
 		icon = ((chooserIcon != 0) ? chooserIcon : 160);
-
-		// vft hex address format
-#ifdef __EA64__
-		static char addressFormat[16];
-
-		UINT count = getTableCount();
-		int maxDigits = 0;
-		char buffer[32];
-		for (UINT i = 0; i < count; i++)
-		{
-			TBLENTRY e; e.vft = 0;
-			getTableEntry(e, i);
-			int digits = strlen(_ui64toa(e.vft, buffer, 16));
-			if (digits > maxDigits) maxDigits = digits;
-		}
-		if (++maxDigits > 16) maxDigits = 16;
-		sprintf(addressFormat, "%%0%uI64X", maxDigits);
-#endif
 	};
 
 	virtual void idaapi closed()
