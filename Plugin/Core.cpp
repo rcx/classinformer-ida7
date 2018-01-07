@@ -538,8 +538,8 @@ void CORE_Process(int arg)
         // Show list result window
         if (!aborted && (getTableCount() > 0))
         {
-			results_window = result_window_t();
-			results_window.choose();
+			static result_window_t* results_window = new result_window_t;
+			results_window->choose();
 
             customizeChooseWindow();
         }
