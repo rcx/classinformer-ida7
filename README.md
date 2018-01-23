@@ -2,7 +2,7 @@
 
 Originally by sirmabus, ported to IDA 7
 
-Compiled binaries over at the [Releases](../../releases).
+Compiled binaries over at the [Releases](../../releases). **If it crashes, use the Debug build and provide a crashdump and crash log! Otherwise I can't fix the issue**
 
 # How to compile it
 
@@ -54,4 +54,4 @@ Each of these repositories should have the Release .lib precompiled for you.
 If they are not, you can compile them using a process similar to the one used to compile this project.
 
 After your paths are setup, you are ready to compile.
-Use Release for the ida.exe plugin, and Release64 for the ida64.exe plugin
+Use Release for the ida.exe plugin, and Release64 for the ida64.exe plugin.
