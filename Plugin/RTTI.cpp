@@ -124,17 +124,45 @@ static LPCSTR attributeLabel(UINT attributes)
 }
 
 
+/*
+from http://moritzraabe.de/2017/03/28/name-identifiers-and-comment-encoding-in-ida-pro/
+- The string cannot be a register name used in the program (but you can use the name rax in a 32-bit program, for example)
+- The first character cannot be a digit
+- The name can only consist of the characters from the following character sets:
+- NameChars: _$?@0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy
+- MangleChars: ()[]:%
+*/
+static void sanitizeIdaName(__out LPSTR out, __in LPCSTR name, int n)
+{
+	static const char* allowedChars = "_$?@0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy()[]:%";
+
+	if (strlen(name) <= 3 /* might be a reserved register, just dodgy overall if it's this short */ || isdigit(*out)) {
+		*out++ = '_'; // append a _
+		n--;
+	}
+	strncpy(out, name, n);
+	for (; *out; out++)
+		if (!strchr(allowedChars, *out))
+			*out = '_';
+}
+
 // Attempt to serialize a managed name until it succeeds
 static BOOL serializeName(ea_t ea, __in LPCSTR name)
 {
-    for (int i = 0; i < 1000000; i++)
-    {
-        char buffer[MAXSTR]; buffer[SIZESTR(buffer)] = 0;
-        _snprintf(buffer, SIZESTR(buffer), "%s_%d", name, i);
-        if (set_name(ea, buffer, (SN_NON_AUTO | SN_NOWARN)))
-            return(TRUE);
-    }
-    return(FALSE);
+	char sanitized[MAXSTR]; sanitized[SIZESTR(sanitized)] = 0;
+	sanitizeIdaName(sanitized, name, SIZESTR(sanitized));
+	if (strlen(sanitized) > MAXSTR - 10)
+		sanitized[MAXSTR - 10] = '\0';
+	// remember to check length
+	for (int i = 0; i < 1000000; i++)
+	{
+		char buffer[MAXSTR]; buffer[SIZESTR(buffer)] = 0;
+		_snprintf(buffer, SIZESTR(buffer), "%s_%d", sanitized, i);
+		if (set_name(ea, buffer, (SN_NON_AUTO | SN_NOWARN))) {
+			return(TRUE);
+		}
+	}
+	return(FALSE);
 }
 
 
