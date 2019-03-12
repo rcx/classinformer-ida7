@@ -1,6 +1,6 @@
 # ClassInformer for IDA 7.0
 
-Originally by sirmabus, ported to IDA 7.0. For IDA 7.1, the orignal author has released an [official build](https://sourceforge.net/projects/classinformer/). Unforunately for those of us who are too broke to afford it we need 7.0 :P
+Originally by sirmabus, backported to IDA 7.0. For IDA 7.1, the orignal author has released an [official build](https://sourceforge.net/projects/classinformer/). Unforunately for those of us who are too broke to afford it we need 7.0 :P
 
 Compiled binaries over at the [Releases](../../releases). **If it crashes, use the Debug build and provide a crashdump and crash log! Otherwise I can't fix the issue**
 
