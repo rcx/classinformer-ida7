@@ -20,7 +20,7 @@ namespace RTTI
         static BOOL isValid(ea_t typeInfo);
         static BOOL isTypeName(ea_t name);
         static int  getName(ea_t typeInfo, __out LPSTR bufffer, int bufferSize);
-        static void doStruct(ea_t typeInfo);
+        static void tryStruct(ea_t typeInfo);
     };
     const UINT MIN_TYPE_INFO_SIZE = (offsetof(type_info, _M_d_name) + sizeof(".?AVx"));
     typedef type_info _TypeDescriptor;
@@ -58,7 +58,7 @@ namespace RTTI
         //_RTTIClassHierarchyDescriptor *classDescriptor; *X64 int32 offset
 
         static BOOL isValid(ea_t bcd, ea_t colBase64 = NULL);
-        static void doStruct(ea_t bcd, __out_bcount(MAXSTR) LPSTR baseClassName, ea_t colBase64 = NULL);
+        static void tryStruct(ea_t bcd, __out_bcount(MAXSTR) LPSTR baseClassName, ea_t colBase64 = NULL);
 	};
 
     // "Class Hierarchy Descriptor" describes the inheritance hierarchy of a class; shared by all COLs for the class
@@ -86,7 +86,7 @@ namespace RTTI
         #endif
 
         static BOOL isValid(ea_t chd, ea_t colBase64 = NULL);
-        static void doStruct(ea_t chd, ea_t colBase64 = NULL);
+        static void tryStruct(ea_t chd, ea_t colBase64 = NULL);
 	};
 
     // "Complete Object Locator" location of the complete object from a specific vftable pointer
@@ -108,7 +108,7 @@ namespace RTTI
         #ifndef __EA64__
         static BOOL isValid2(ea_t col);
         #endif
-        static void doStruct(ea_t col);
+        static BOOL tryStruct(ea_t col);
 	};
 	#pragma pack(pop)
 
@@ -116,6 +116,6 @@ namespace RTTI
 
     void freeWorkingData();
 	void addDefinitionsToIda();
-    void processVftable(ea_t eaTable, ea_t col);
+    BOOL processVftable(ea_t eaTable, ea_t col);
 }
 

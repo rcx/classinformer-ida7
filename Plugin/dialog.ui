@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>292</width>
-    <height>344</height>
+    <height>311</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>292</width>
-    <height>344</height>
+    <height>311</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>292</width>
-    <height>344</height>
+    <height>311</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>312</y>
+     <y>272</y>
      <width>156</width>
      <height>24</height>
     </rect>
@@ -64,7 +64,7 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>95</y>
+     <y>94</y>
      <width>121</width>
      <height>17</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>125</y>
+     <y>122</y>
      <width>256</width>
      <height>17</height>
     </rect>
@@ -108,29 +108,7 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>155</y>
-     <width>201</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Noto Sans</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="toolTip">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string>Overwrite anterior comments</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="checkBox4">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>185</y>
+     <y>148</y>
      <width>151</width>
      <height>17</height>
     </rect>
@@ -152,7 +130,7 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>256</y>
+     <y>225</y>
      <width>141</width>
      <height>16</height>
     </rect>
@@ -205,9 +183,9 @@
    <property name="geometry">
     <rect>
      <x>225</x>
-     <y>45</y>
+     <y>44</y>
      <width>61</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
@@ -220,7 +198,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>Version: 2.4
+    <string>Version: 2.6
 By Sirmabus</string>
    </property>
    <property name="textFormat">
@@ -234,7 +212,7 @@ By Sirmabus</string>
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>215</y>
+     <y>186</y>
      <width>129</width>
      <height>27</height>
     </rect>

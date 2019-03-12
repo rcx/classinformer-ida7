@@ -4,8 +4,8 @@
 
 // Online: http://demangler.com/
 
-typedef void * (__cdecl * _Alloc)(UINT);
-typedef void(__cdecl * _Free)(PVOID);
+typedef PVOID (__cdecl * _Alloc)(UINT);
+typedef void (__cdecl * _Free)(PVOID);
 
 const UINT UNDNAME_COMPLETE                 = 0x00000;  // Enable full undecoration
 const UINT UNDNAME_NO_LEADING_UNDERSCORES   = 0x00001;  // Remove leading underscores from MS extended keywords
@@ -27,10 +27,13 @@ const UINT UNDNAME_HAVE_PARAMETERS          = 0x04000;  // The real templates pa
 const UINT UNDNAME_NO_ECSU                  = 0x08000;  // Suppress enum/class/struct/union
 const UINT UNDNAME_NO_IDENT_CHAR_CHECK      = 0x10000;  // Suppress check for IsValidIdentChar
 
+inline PVOID mallocWrap(UINT size) { return malloc((UINT) size);  }
+
 /*
 To supply a buffer to use use 'buffer' and 'sizeBuffer', else for a allocated buffer
 'buffer' = NULL, 'sizeBuffer' = 0, and use the return string.
 Call Free on the return result when done with the string.
 Note: CRT documentation error, the Allocator and Free must be supplied regardless if supplied or allocation buffer method desired.
 */
+// https://www.winehq.org/pipermail/wine-patches/2004-January/009183.html
 extern "C" LPSTR __cdecl __unDName(__out LPSTR buffer, __in LPCSTR name, int sizeBuffer, _Alloc allocator, _Free _free, UINT flags);

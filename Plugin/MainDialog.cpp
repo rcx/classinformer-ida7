@@ -10,7 +10,7 @@
 #include <QtWidgets/QDialogButtonBox>
 
 
-MainDialog::MainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionOverwriteComments, BOOL &optionAudioOnDone, SegSelect::segments **segs) : QDialog(QApplication::activeWindow(), 0)
+MainDialog::MainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionAudioOnDone, SegSelect::segments **segs) : QDialog(QApplication::activeWindow(), 0)
 {
     Ui::MainCIDialog::setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -20,8 +20,7 @@ MainDialog::MainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL
     #define INITSTATE(obj,state) obj->setCheckState((state == TRUE) ? Qt::Checked : Qt::Unchecked);
     INITSTATE(checkBox1, optionPlaceStructs);
     INITSTATE(checkBox2, optionProcessStatic);
-    INITSTATE(checkBox3, optionOverwriteComments);
-    INITSTATE(checkBox4, optionAudioOnDone);
+    INITSTATE(checkBox3, optionAudioOnDone);
     #undef INITSTATE
 
     // Apply style sheet
@@ -39,17 +38,16 @@ void MainDialog::segmentSelect()
 }
 
 // Do main dialog, return TRUE if canceled
-BOOL doMainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionOverwriteComments, BOOL &optionAudioOnDone, SegSelect::segments **segs)
+BOOL doMainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionAudioOnDone, SegSelect::segments **segs)
 {
 	BOOL result = TRUE;
-    MainDialog *dlg = new MainDialog(optionPlaceStructs, optionProcessStatic, optionOverwriteComments, optionAudioOnDone, segs);
+    MainDialog *dlg = new MainDialog(optionPlaceStructs, optionProcessStatic, optionAudioOnDone, segs);
     if (dlg->exec())
     {
         #define CHECKSTATE(obj,var) var = dlg->obj->isChecked()
         CHECKSTATE(checkBox1, optionPlaceStructs);
         CHECKSTATE(checkBox2, optionProcessStatic);
-        CHECKSTATE(checkBox3, optionOverwriteComments);		
-        CHECKSTATE(checkBox4, optionAudioOnDone);
+        CHECKSTATE(checkBox3, optionAudioOnDone);
         #undef CHECKSTATE
 		result = FALSE;
     }

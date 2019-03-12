@@ -2,7 +2,7 @@
 Class Informer:
 ===========================================================
 IDA Pro class vftable finder, namer, fixer, lister plug-in.
-Version 2.4, May 2017
+Version 2.6, July 2018
 By Sirmabus
 
 https://sourceforge.net/projects/classinformer/
@@ -114,6 +114,15 @@ Disassembler"
 
 -- [History] --------------------------------------------
 
+2.6 - 1) Updated to IDA SDK 7.1
+
+2.5 - 1) Updated to IDA 7 and MSVC 2017.
+         Some of the changes for this:
+          Doesn't place types/structs, nor names or comments if they already exist.
+          Now the scanning role is more of looking for and fixing things IDA might have missed.
+      2) Now catches a rare secondary case where an assumed member function is unresolved bytes to
+         increase the accuracy of vftable member count scanning.
+
 2.4 - 1) Now scans all "DATA" type segments. Before would only scan the first
          ".data" and ".rdata" segments.
       2) Added segment select option to plug-in dialog.
@@ -122,23 +131,23 @@ Disassembler"
 
 2.1 - 1) Removed the "IDA updating, please wait.." wait for IDA to update thing
          at the end of processing to fix an ocassional hang.
-	  2) Updated to IDA SDK 6.8 version.
+          2) Updated to IDA SDK 6.8 version.
 
 2.0 - A complete overhaul of the entire plug-in.
-	1) Updated namings to better match that of Microsoft's internals.
-	2) Moved custom type creation out of the init() call; now gets created
-	only 	on the first run and only if the "Place structures" option is
-	checked.
-	3) Descriptive comments are now placed on C/C++ initializer and
-	terminator table start and end points.
-	4) The UI is now a custom Qt one with "material design" elements.
-	5) Added a 64bit (32bit IDA's "__E64__") version.
-	6) The RTCI (rare MS MFC type) support was removed.
-	7) Now locates vftables by RTTI "Complete Object Locator" structures
-	directly.
-	8) Updated to IDA SDK 6.7 version.
-	9) No longer has a default hotkey. Set your own using "plugins.cfg".
-	10) Updated and improved the static ctor/dtor processing.
+        1) Updated namings to better match that of Microsoft's internals.
+        2) Moved custom type creation out of the init() call; now gets created
+        only    on the first run and only if the "Place structures" option is
+        checked.
+        3) Descriptive comments are now placed on C/C++ initializer and
+        terminator table start and end points.
+        4) The UI is now a custom Qt one with "material design" elements.
+        5) Added a 64bit (32bit IDA's "__E64__") version.
+        6) The RTCI (rare MS MFC type) support was removed.
+        7) Now locates vftables by RTTI "Complete Object Locator" structures
+        directly.
+        8) Updated to IDA SDK 6.7 version.
+        9) No longer has a default hotkey. Set your own using "plugins.cfg".
+        10) Updated and improved the static ctor/dtor processing.
 
 1.06 - 1) Added persistent vftable list storage.
        2) Removed the many unnecessary "autoWait()" calls that caused a bit

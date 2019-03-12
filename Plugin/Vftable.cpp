@@ -5,7 +5,7 @@
 //
 // ****************************************************************************
 #include "stdafx.h"
-#include "Core.h"
+#include "Main.h"
 #include "Vftable.h"
 #include "RTTI.h"
 
@@ -20,14 +20,14 @@ namespace vftable
 // Return TRUE along with info if valid vftable parsed at address
 BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
 {
-    ZeroMemory(&info, sizeof(vtinfo));
-
 	// Start of a vft should have an xref and a name (auto, or user, etc).
     // Ideal flags 32bit: FF_DWRD, FF_0OFF, FF_REF, FF_NAME, FF_DATA, FF_IVL
     //dumpFlags(ea);
     flags_t flags = get_flags(ea);
 	if(has_xref(flags) && has_any_name(flags) && (isEa(flags) || is_unknown(flags)))
     {
+		ZeroMemory(&info, sizeof(vtinfo));
+
         // Get raw (auto-generated mangled, or user named) vft name
         //if (!get_name(BADADDR, ea, info.name, SIZESTR(info.name)))
         //    msg(EAFORMAT" ** vftable::getTableInfo(): failed to get raw name!\n", ea);
@@ -36,7 +36,7 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
         ea_t start = info.start = ea;
         while (TRUE)
         {
-            // Should be an ea_t offset to a function here (could be unknown if dirty IDB)
+            // Should be an ea_t sized offset to a function here (could be unknown if dirty IDB)
             // Ideal flags for 32bit: FF_DWRD, FF_0OFF, FF_REF, FF_NAME, FF_DATA, FF_IVL
             //dumpFlags(ea);
             flags_t indexFlags = get_flags(ea);
@@ -50,7 +50,7 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
             ea_t memberPtr = getEa(ea);
             if (!(memberPtr && (memberPtr != BADADDR)))
             {
-                // vft's often have a zero ea_t (NULL pointer?) following, fix it
+                // vft's often have a trailing zero ea_t (alignment, or?), fix it
                 if (memberPtr == 0)
                     fixEa(ea);
 
@@ -62,9 +62,23 @@ BOOL vftable::getTableInfo(ea_t ea, vtinfo &info)
             flags_t flags = get_flags(memberPtr);
             if (!(is_code(flags) || is_unknown(flags)))
             {
-                //msg(" ******* 3\n");
-                break;
+				// New for version 2.5: there are rare cases where IDA hasn't fix unresolved bytes
+				// So except if the member pointer is in a code segment as a 2nd chance
+				if (segment_t *s = getseg(memberPtr))
+				{
+					if (s->type != SEG_CODE)
+					{
+						//msg(" ******* 3\n");
+						break;
+					}
+				}
+				else
+				{
+					//msg(" ******* 3.5\n");
+					break;
+				}
             }
+
 
             if (ea != start)
             {
@@ -150,11 +164,11 @@ int vftable::tryKnownMember(LPCTSTR name, ea_t eaMember)
 	if(eaMember && (eaMember != BADADDR))
 	{
 		// Skip if it already has a name
-		flags_t flags = getFlags((ea_t) eaMember);
+		flags_t flags = get_flags((ea_t) eaMember);
 		if(!has_name(flags) || has_dummy_name(flags))
 		{
 			// Should be code
-			if(isCode(flags))
+			if(is_code(flags))
 			{
 				ea_t eaAddress = eaMember;
 

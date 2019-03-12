@@ -44,7 +44,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RTTI.cpp" />
     <ClCompile Include="Vftable.cpp" />
@@ -66,7 +65,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Core.h" />
     <CustomBuild Include="RTTI.h" />
     <CustomBuild Include="StdAfx.h" />
     <CustomBuild Include="Vftable.h" />

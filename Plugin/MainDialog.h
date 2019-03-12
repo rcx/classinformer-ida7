@@ -11,7 +11,7 @@ class MainDialog : public QDialog, public Ui::MainCIDialog
 {
     Q_OBJECT
 public:
-    MainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionOverwriteComments, BOOL &optionAudioOnDone, SegSelect::segments **segs);
+    MainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionAudioOnDone, SegSelect::segments **segs);
 
 private:
 	SegSelect::segments **segs;
@@ -21,4 +21,4 @@ private slots:
 };
 
 // Do main dialog, return TRUE if canceled
-BOOL doMainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionOverwriteComments, BOOL &optionAudioOnDone, SegSelect::segments **segs);
+BOOL doMainDialog(BOOL &optionPlaceStructs, BOOL &optionProcessStatic, BOOL &optionAudioOnDone, SegSelect::segments **segs);
